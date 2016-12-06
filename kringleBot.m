@@ -62,7 +62,7 @@ end
 
 
 
-%SET UP EMAIL PREFERENCES:
+%SET UP EMAIL PREFERENCES (TESTED FOR GMAIL.  NOT SURE ABOUT OTHER EMAIL PROVIDERS) :
 setpref('Internet','E_mail','senderAddress@gmail.com');
 setpref('Internet','SMTP_Username','senderAddress@gmail.com');
 setpref('Internet','SMTP_Password','yourGmailPasswordHere');
