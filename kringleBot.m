@@ -84,6 +84,7 @@ end
 
 
 %Automatically send out the emails with attachments:
+%IF USING GMAIL:  Don't forget to go into your Gmail settings and enable "less secure app access." 
 for n=1:length(names)
     sendmail(...
         emailAddresses{n},...
