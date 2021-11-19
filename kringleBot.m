@@ -39,23 +39,21 @@ remaining=[1:length(names)];
 
 %Do the randomization:
 ok=false;
+iter=0;
 while ~ok
+    r=randperm(length(names));
+    iter=iter+1;
+    ok=true;
     for n=1:length(names)
-        n;
-        temp=remaining(~ismember(remaining,[n restricted{n}]));
-        if ~isempty(temp) %It worked!
-            r(n)=temp(randi(length(temp)));
-            remaining=remaining(remaining~=r(n));
-            ok=true;
-        else  %It didn't work... start over. 
-            remaining=[1:length(names)];
-            ok=false;
-            break
-        end 
+        if r(n)==n || ismember(restricted{n},r(n))
+            ok=false; %THIS RANDOMIZATION WAS NOT OK.  RE-START.
+            break;
+        end
     end
 end
 
-%Display who gets who
+%Display who gets who 
+%(Comment this part if you don't want to spoil the surprise!)
 for n=1:length(names)
     disp([names{n} ' gets ' names{r(n)}]);
 end
@@ -63,6 +61,7 @@ end
 
 
 %SET UP EMAIL PREFERENCES (TESTED FOR GMAIL.  NOT SURE ABOUT OTHER EMAIL PROVIDERS) :
+setpref('Internet','SMTP_Server','smtp.gmail.com');
 setpref('Internet','E_mail','senderAddress@gmail.com');
 setpref('Internet','SMTP_Username','senderAddress@gmail.com');
 setpref('Internet','SMTP_Password','yourGmailPasswordHere');
